@@ -1,5 +1,7 @@
 # Shortify
 
+Service for shortifying links.
+
 ## Requirements
 
 - Go 1.14.4
