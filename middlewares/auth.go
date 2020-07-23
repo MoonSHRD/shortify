@@ -4,12 +4,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/MoonSHRD/logger"
-	"github.com/MoonSHRD/shortify/app"
-	"github.com/MoonSHRD/shortify/controllers"
 	"io/ioutil"
 	"net/http"
 	"strings"
+
+	"github.com/MoonSHRD/logger"
+	"github.com/MoonSHRD/shortify/app"
+	"github.com/MoonSHRD/shortify/controllers"
 )
 
 const (
@@ -39,7 +40,7 @@ func (am *AuthMiddleware) ProcessRequest(next http.HandlerFunc) http.HandlerFunc
 			return
 		}
 		splitToken := strings.Split(accessToken, " ")
-		if len(splitToken) == 0 {
+		if len(splitToken) < 2 {
 			err := fmt.Errorf("unauthorized")
 			logger.Warningf("Unauthorized access on route %s", req.URL.Path)
 			controllers.ReturnHTTPError(res, err.Error(), http.StatusForbidden)
